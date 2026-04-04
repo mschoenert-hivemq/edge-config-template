@@ -1,8 +1,17 @@
-# TODO: set type to 'opcua' or 'bacnetip'
-type: opcua
-id: my-adapter
-name: My OPC-UA Adapter
+# ─── Adapter connection ───────────────────────────────────────────────────────
+#
+# Step 1: Rename the parent directory from 'my-adapter' to your adapter's ID
+#         (e.g. 'pump-station-01'). The directory name becomes the adapter ID
+#         in the compiled config and must be unique within the instance.
+#
+# Step 2: Set 'type' to 'opcua' or 'bacnetip' and fill in the connection details.
+#         The 'id' field must exactly match the directory name you chose above.
+#
+type: opcua                   # TODO: opcua | bacnetip
+id: my-adapter                # TODO: must match the directory name
+name: My OPC-UA Adapter       # TODO: human-readable display name shown in the UI
+
 connection:
-  host: 192.168.1.10   # TODO: set the OPC-UA server host
-  port: 4840
-  securityPolicy: None
+  host: 192.168.1.10          # TODO: hostname or IP address of the OPC-UA server
+  port: 4840                  # default OPC-UA port; 47808 for BACnet/IP
+  securityPolicy: None        # None | Basic128Rsa15 | Basic256 | Basic256Sha256

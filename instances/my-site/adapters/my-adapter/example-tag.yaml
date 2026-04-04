@@ -1,12 +1,27 @@
+# ─── Tags and northbound mappings ─────────────────────────────────────────────
+#
+# Step 3: Rename this file to something descriptive (e.g. 'temperature.yaml').
+#         You can split tags across multiple files — the compiler merges them all.
+#
+# Step 4: Replace the example below with your actual tag(s).
+#         - 'name' is how you reference the tag elsewhere (northbound, combiners).
+#         - 'deviceTag.id' is the address on the device (OPC-UA node ID or BACnet address).
+#
+# Step 5: For each tag, add a northbound mapping to publish it to an MQTT topic.
+#         The $include pulls in fleet/northbound-mapping.yaml, which sets:
+#           qos: 1, includeTimestamp: true, includeTagNames: true
+#         Override any of those by adding the key as a sibling of $include.
+#
+
 tags:
-  - name: MyTag
+  - name: MyTag                          # TODO: tag name — referenced in northbound below
     deviceTag:
-      id: "ns=2;i=1"   # TODO: set the OPC-UA node ID
-      dataType: Float
-      description: My first tag
+      id: "ns=2;i=1"                     # TODO: OPC-UA node ID (or BACnet address)
+      dataType: Float                    # TODO: Float | Double | Int | String | Boolean
+      description: My first tag          # TODO: human-readable description
 
 northbound:
-  - tag:
-      name: MyTag
-    topic: my-site/my-adapter/my-tag
-    qos: 1
+  - $include: fleet/northbound-mapping.yaml
+    tag:
+      name: MyTag                        # TODO: must match a tag name above
+    topic: my-site/my-adapter/my-tag    # TODO: MQTT publish topic
