@@ -1,0 +1,8 @@
+# TODO: set type to 'opcua' or 'bacnetip'
+type: opcua
+id: my-adapter
+name: My OPC-UA Adapter
+connection:
+  host: 192.168.1.10   # TODO: set the OPC-UA server host
+  port: 4840
+  securityPolicy: None

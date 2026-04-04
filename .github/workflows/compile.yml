@@ -1,0 +1,37 @@
+name: Compile Edge Configuration
+
+on:
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Preprocess and compile all instances
+        run: ./gradlew compile
+
+      - name: Upload compiled configs
+        uses: actions/upload-artifact@v6
+        with:
+          name: compiled-configs
+          path: build/preprocessed/build/*/compiled-config.json
+          retention-days: 90

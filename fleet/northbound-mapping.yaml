@@ -1,0 +1,3 @@
+qos: 1
+includeTimestamp: true
+includeTagNames: true

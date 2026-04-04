@@ -1,0 +1,9 @@
+# HiveMQ Edge configuration project descriptor.
+# 'sources' lists the directories the compiler scans for adapter and tag YAML.
+# 'output' is where compiled-config.json files are written.
+# Do not change 'output' — the Gradle build depends on this value.
+edgeVersion: "2.5"
+sources:
+  - instances/
+output: build/
+preprocessing: []

@@ -1,0 +1,12 @@
+tags:
+  - name: MyTag
+    deviceTag:
+      id: "ns=2;i=1"   # TODO: set the OPC-UA node ID
+      dataType: Float
+      description: My first tag
+
+northbound:
+  - tag:
+      name: MyTag
+    topic: my-site/my-adapter/my-tag
+    qos: 1
