@@ -48,7 +48,7 @@ instanceDirs.forEach { instance ->
         commandLine(
             "sh", "-c",
             "cd '${preprocessedDir.absolutePath}' && " +
-            "java -jar '${compilerJar.absolutePath}' compile -p . --instance $instance"
+            "java -jar '${compilerJar.absolutePath}' -p . --instance $instance"
         )
     }
     compileAll { dependsOn(task) }
