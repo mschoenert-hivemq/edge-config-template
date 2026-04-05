@@ -26,6 +26,14 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Cache Deno modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.deno
+          key: deno-${{ runner.os }}-${{ hashFiles('scripts/preprocess.ts') }}
+          restore-keys: |
+            deno-${{ runner.os }}-
+
       - name: Preprocess and compile all instances
         run: ./gradlew build
 
