@@ -1,3 +1,7 @@
+plugins {
+    base
+}
+
 // ─── Compiler JAR ─────────────────────────────────────────────────────────────
 // Currently: the compiler JAR is committed to this repo at compiler/hivemq-edge-compiler.jar.
 // This is temporary — there is currently no published artifact to download from.
