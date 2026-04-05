@@ -44,6 +44,8 @@ val compileAll = tasks.register("compile") {
     description = "Compile all instances"
 }
 
+tasks.named("build") { dependsOn(compileAll) }
+
 instanceDirs.forEach { instance ->
     val task = tasks.register<Exec>("compile-$instance") {
         group = "build"
