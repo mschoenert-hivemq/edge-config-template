@@ -27,11 +27,11 @@ jobs:
           deno-version: v2.x
 
       - name: Preprocess and compile all instances
-        run: ./gradlew compile
+        run: ./gradlew build
 
       - name: Upload compiled configs
         uses: actions/upload-artifact@v6
         with:
           name: compiled-configs
-          path: build/preprocessed/build/*/compiled-config.json
+          path: build/*/compiled-config.json
           retention-days: 90
