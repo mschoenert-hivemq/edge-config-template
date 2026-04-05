@@ -19,6 +19,10 @@ This is a **template** for managing HiveMQ Edge configuration as code (GitOps-st
 │   └── hivemq-edge-compiler.jar  # Compiler binary (bundled until published to Maven)
 ├── fleet/                         # Shared YAML templates (optional)
 │   └── northbound-mapping.yaml   # Default northbound mapping options
+├── authoring/
+│   └── index.html                 # Authoring UI — open directly in Chrome (no server needed)
+├── monitoring/
+│   └── index.html                 # Monitoring UI — open directly in Chrome (no server needed)
 └── instances/
     └── my-site/                  # One directory per Edge instance
         └── adapters/
@@ -58,6 +62,24 @@ mappings:
       nr: "01"
       sensor: Temperature
 ```
+
+## Authoring UI
+
+`authoring/index.html` is a self-contained browser app for editing your adapter YAML files. Open it directly from your filesystem — no server required (Chrome/Edge only).
+
+1. Open `authoring/index.html` in Chrome or Edge
+2. Click **Open directory** and select your cloned config repo
+3. Edit adapters, tags, and data combiners — changes are auto-saved to disk
+
+The authoring UI reads and writes the same YAML files that the compiler consumes. It does not connect to a running Edge instance.
+
+## Monitoring UI
+
+`monitoring/index.html` is a self-contained browser app that connects to a running HiveMQ Edge instance and shows a live adapter/combiner graph. Open it directly from your filesystem — no server required (Chrome/Edge only).
+
+1. Open `monitoring/index.html` in Chrome or Edge
+2. Enter the Edge URL (e.g. `http://localhost:8080`), username, and password
+3. Click **Connect** — the workspace view loads automatically
 
 ## CI/CD
 
