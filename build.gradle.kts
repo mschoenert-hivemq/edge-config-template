@@ -45,10 +45,12 @@ instanceDirs.forEach { instance ->
         group = "build"
         description = "Compile instance: $instance"
         dependsOn(preprocess)
+        val outputFile = layout.buildDirectory.file("$instance/compiled-config.json").get().asFile
         commandLine(
             "sh", "-c",
             "cd '${preprocessedDir.absolutePath}' && " +
-            "java -jar '${compilerJar.absolutePath}' -p . --instance $instance"
+            "java -jar '${compilerJar.absolutePath}' -p . --instance $instance" +
+            " --output '${outputFile.absolutePath}'"
         )
     }
     compileAll { dependsOn(task) }
