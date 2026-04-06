@@ -1,2 +1,15 @@
+# Compiled output — produced by CI, not committed
 build/
+
+# Gradle
 .gradle/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
