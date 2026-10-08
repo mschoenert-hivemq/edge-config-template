@@ -28,18 +28,18 @@ This is a **template** for managing HiveMQ Edge configuration as code (GitOps-st
         └── adapters/
             └── my-adapter/
                 ├── adapter.yaml       # Adapter type, connection settings
-                └── example-tag.yaml   # Tag definitions and northbound mappings
+                └── MyTag.yaml         # One tag and its northbound mapping, named after the tag
 ```
 
 ## Local compilation
 
-Requirements: Java 21, [Deno v2](https://deno.land/), and `./gradlew`.
+Requirements: Java 21 or newer, [Deno v2](https://deno.land/), and `./gradlew`.
 
 ```sh
 ./gradlew compile
 ```
 
-Compiled configs are written to `build/preprocessed/build/<instance>/compiled-config.json`.
+Compiled configs are written to `build/<instance>/compiled-config.json`.
 
 ## Fleet templates and `$include`
 
@@ -48,8 +48,7 @@ Put reusable YAML fragments in `fleet/`. Reference them in instance files with `
 ```yaml
 northbound:
   - $include: fleet/northbound-mapping.yaml
-    tag:
-      name: MyTag
+    tagName: MyTag
     topic: site/adapter/my-tag
 ```
 
@@ -93,6 +92,6 @@ Download the artifact and publish it to your Edge instance via MQTT:
 
 ```sh
 mqtt pub -h <edge-host> -p 1883 -q 1 \
-  -t 'HIVEMQ/-/EDGE/-/CONFIGURATION/apply' \
+  -t 'HIVEMQ/-/EDGE/-/CONFIG/apply' \
   -m:file=compiled-config.json
 ```

@@ -170,6 +170,16 @@ for await (const instanceEntry of Deno.readDir(join(ROOT, "instances"))) {
     console.log(`  [${instanceName}] vars: ${Object.keys(instanceVars).join(", ")}`);
   }
 
+  // Copy JSON files (e.g. workspace.json) verbatim — no YAML processing needed.
+  for await (const entry of walk(instanceDir, { exts: [".json"] })) {
+    const rel = relative(ROOT, entry.path);
+    const out = join(OUT, rel);
+    await ensureDir(dirname(out));
+    await Deno.copyFile(entry.path, out);
+    console.log(`  ${rel}`);
+    count++;
+  }
+
   for await (const entry of walk(instanceDir, { exts: [".yaml"] })) {
     const src = await Deno.readTextFile(entry.path);
     const resolved = await resolve(parse(src), baseVars);

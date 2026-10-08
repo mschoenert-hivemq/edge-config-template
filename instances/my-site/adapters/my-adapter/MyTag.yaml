@@ -1,7 +1,8 @@
 # ─── Tags and northbound mappings ─────────────────────────────────────────────
 #
-# Step 3: Rename this file to something descriptive (e.g. 'temperature.yaml').
-#         You can split tags across multiple files — the compiler merges them all.
+# Step 3: Keep one tag per file, named exactly after the tag (e.g. 'Temperature.yaml' for the tag
+#         'Temperature'). The authoring UI saves each tag to '<tag name>.yaml', so a file with
+#         another name ends up split or, on a case-insensitive disk such as macOS, deleted.
 #
 # Step 4: Replace the example below with your actual tag(s).
 #         - 'name' is how you reference the tag elsewhere (northbound, combiners).
@@ -22,6 +23,5 @@ tags:
 
 northbound:
   - $include: fleet/northbound-mapping.yaml
-    tag:
-      name: MyTag                        # TODO: must match a tag name above
+    tagName: MyTag                       # TODO: must match a tag name above
     topic: my-site/my-adapter/my-tag    # TODO: MQTT publish topic
